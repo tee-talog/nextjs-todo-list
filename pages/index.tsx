@@ -33,7 +33,11 @@ const ItemList = () => (
   </List>
 )
 
-const Home: NextPage = () => {
+const Container: NextPage = () => {
+  return <Presenter />
+}
+
+const Presenter = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <Head>
@@ -66,4 +70,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Container
