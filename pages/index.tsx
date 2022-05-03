@@ -8,6 +8,33 @@ import ListItem from '../components/ListItem'
 import PageTitle from '../components/PageTitle'
 import SectionTitle from '../components/SectionTitle'
 
+const AddItemForm = () => (
+  <form className="flex w-full flex-nowrap">
+    <label className="mr-4 flex flex-1 items-center">
+      <span className="mr-2">タイトル</span>
+      <Input
+        type="text"
+        className="flex-1"
+        placeholder="例：TODO リストを確認する"
+      />
+    </label>
+    <Button type="submit">Add</Button>
+  </form>
+)
+
+const ItemList = () => (
+  <List>
+    <ListItem>
+      <div className="flex justify-between gap-x-2">
+        <h3>item</h3>
+        <div>
+          <button type="button">Remove</button>
+        </div>
+      </div>
+    </ListItem>
+  </List>
+)
+
 const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
@@ -29,31 +56,12 @@ const Home: NextPage = () => {
       >
         <section className="flex w-full flex-col items-center">
           <SectionTitle className="sr-only">Add Item</SectionTitle>
-          <form className="flex w-full flex-nowrap">
-            <label className="mr-4 flex flex-1 items-center">
-              <span className="mr-2">タイトル</span>
-              <Input
-                type="text"
-                className="flex-1"
-                placeholder="例：TODO リストを確認する"
-              />
-            </label>
-            <Button type="submit">Add</Button>
-          </form>
+          <AddItemForm />
         </section>
 
         <section className="w-full">
           <SectionTitle className="sr-only">Items</SectionTitle>
-          <List>
-            <ListItem>
-              <div className="flex justify-between gap-x-2">
-                <h3>item</h3>
-                <div>
-                  <button type="button">Remove</button>
-                </div>
-              </div>
-            </ListItem>
-          </List>
+          <ItemList />
         </section>
       </main>
     </div>
