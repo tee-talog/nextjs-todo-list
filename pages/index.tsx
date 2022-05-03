@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Button from '../components/Button'
 import PageTitle from '../components/PageTitle'
 
 const Home: NextPage = () => {
@@ -16,7 +17,7 @@ const Home: NextPage = () => {
           <h2>add item</h2>
           <form>
             <input type="text" />
-            <button type="submit">Add</button>
+            <Button type="submit">Add</Button>
           </form>
         </section>
 
