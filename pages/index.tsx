@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Button from '../components/Button'
+import Input from '../components/Input'
 import PageTitle from '../components/PageTitle'
 
 const Home: NextPage = () => {
@@ -16,7 +17,7 @@ const Home: NextPage = () => {
         <section>
           <h2>add item</h2>
           <form>
-            <input type="text" />
+            <Input type="text" placeholder="例：TODO リストを見る" />
             <Button type="submit">Add</Button>
           </form>
         </section>
