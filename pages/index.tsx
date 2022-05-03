@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import PageTitle from '../components/PageTitle'
+import SectionTitle from '../components/SectionTitle'
 
 const Home: NextPage = () => {
   return (
@@ -14,8 +15,9 @@ const Home: NextPage = () => {
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <PageTitle>TODO List</PageTitle>
+
         <section>
-          <h2>add item</h2>
+          <SectionTitle>add item</SectionTitle>
           <form>
             <Input type="text" placeholder="例：TODO リストを見る" />
             <Button type="submit">Add</Button>
@@ -23,7 +25,7 @@ const Home: NextPage = () => {
         </section>
 
         <section>
-          <h2>items</h2>
+          <SectionTitle>items</SectionTitle>
           <ul>
             <li>
               <div>
