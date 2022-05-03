@@ -30,11 +30,14 @@ const Home: NextPage = () => {
         <section className="flex w-full flex-col items-center">
           <SectionTitle className="sr-only">Add Item</SectionTitle>
           <form className="flex w-full flex-nowrap">
-            <Input
-              type="text"
-              placeholder="例：TODO リストを確認する"
-              className="mr-4 flex-1"
-            />
+            <label className="mr-4 flex flex-1 items-center">
+              <span className="mr-2">タイトル</span>
+              <Input
+                type="text"
+                className="flex-1"
+                placeholder="例：TODO リストを確認する"
+              />
+            </label>
             <Button type="submit">Add</Button>
           </form>
         </section>
