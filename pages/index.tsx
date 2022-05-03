@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, FormEventHandler, useEffect, useState } from 'react'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import List from '../components/List'
@@ -38,15 +38,16 @@ const Container: NextPage = () => {
     })
   }, [])
 
-  return <Presenter items={items} />
+  return <Presenter items={items} addItem={addItem} />
 }
 
 // presentation
 type PresenterProps = {
   items: Item[]
+  addItem: (item: Item) => void
 }
 
-const Presenter = ({ items }: PresenterProps) => {
+const Presenter = ({ items, addItem }: PresenterProps) => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <Head>
@@ -67,7 +68,7 @@ const Presenter = ({ items }: PresenterProps) => {
       >
         <section className="flex w-full flex-col items-center">
           <SectionTitle className="sr-only">Add Item</SectionTitle>
-          <AddItemForm />
+          <AddItemForm addItem={addItem} />
         </section>
 
         <section className="w-full">
@@ -80,19 +81,41 @@ const Presenter = ({ items }: PresenterProps) => {
 }
 
 // components
-const AddItemForm = () => (
-  <form className="flex w-full flex-nowrap">
-    <label className="mr-4 flex flex-1 items-center">
-      <span className="mr-2">タイトル</span>
-      <Input
-        type="text"
-        className="flex-1"
-        placeholder="例：TODO リストを確認する"
-      />
-    </label>
-    <Button type="submit">Add</Button>
-  </form>
-)
+type AddItemFormProps = {
+  addItem: (item: Item) => void
+}
+
+const AddItemForm = ({ addItem }: AddItemFormProps) => {
+  const [title, setTitle] = useState('')
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value)
+  }
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault()
+    addItem({
+      id: Math.random().toString(),
+      title,
+    })
+  }
+
+  return (
+    <form className="flex w-full flex-nowrap" onSubmit={handleSubmit}>
+      <label className="mr-4 flex flex-1 items-center">
+        <span className="mr-2">タイトル</span>
+        <Input
+          type="text"
+          className="flex-1"
+          placeholder="例：TODO リストを確認する"
+          name="title"
+          value={title}
+          onChange={handleChange}
+        />
+      </label>
+      <Button type="submit">Add</Button>
+    </form>
+  )
+}
 
 type ItemListProps = {
   items: Item[]
