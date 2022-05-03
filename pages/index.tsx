@@ -2,6 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Button from '../components/Button'
 import Input from '../components/Input'
+import List from '../components/List'
+import ListItem from '../components/ListItem'
 import PageTitle from '../components/PageTitle'
 import SectionTitle from '../components/SectionTitle'
 
@@ -26,16 +28,16 @@ const Home: NextPage = () => {
 
         <section>
           <SectionTitle>items</SectionTitle>
-          <ul>
-            <li>
-              <div>
+          <List>
+            <ListItem>
+              <div className="flex gap-x-2">
                 <h3>item</h3>
                 <div>
                   <button type="button">Remove</button>
                 </div>
               </div>
-            </li>
-          </ul>
+            </ListItem>
+          </List>
         </section>
       </main>
     </div>
