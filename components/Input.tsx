@@ -15,4 +15,7 @@ const Presenter = ({ className, ...props }: InputProps) => (
   />
 )
 
+Container.displayName = 'InputContainer'
+Presenter.displayName = 'InputPresenter'
+
 export default Container

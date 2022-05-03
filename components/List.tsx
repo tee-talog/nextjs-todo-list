@@ -13,4 +13,7 @@ const Presenter = ({ children, className, ...props }: ListProps) => (
   </ul>
 )
 
+Container.displayName = 'ListContainer'
+Presenter.displayName = 'ListPresenter'
+
 export default Container

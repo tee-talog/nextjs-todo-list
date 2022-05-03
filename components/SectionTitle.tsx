@@ -13,4 +13,7 @@ const Presenter = ({ children, className, ...props }: SectionTitleProps) => (
   </h1>
 )
 
+Container.displayName = 'SectionTitleContainer'
+Presenter.displayName = 'SectionTitlePresenter'
+
 export default Container

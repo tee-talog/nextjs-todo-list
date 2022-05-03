@@ -19,4 +19,7 @@ const Presenter = ({ children, className, ...props }: ButtonProps) => (
   </button>
 )
 
+Container.displayName = 'ButtonContainer'
+Presenter.displayName = 'ButtonPresenter'
+
 export default Container
