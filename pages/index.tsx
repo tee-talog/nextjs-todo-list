@@ -25,11 +25,9 @@ const AddItemForm = () => (
 const ItemList = () => (
   <List>
     <ListItem>
-      <div className="flex justify-between gap-x-2">
-        <h3>item</h3>
-        <div>
-          <button type="button">Remove</button>
-        </div>
+      <div className="flex items-center justify-between gap-x-2">
+        <p className="text-left">item</p>
+        <Button type="button">Remove</Button>
       </div>
     </ListItem>
   </List>
