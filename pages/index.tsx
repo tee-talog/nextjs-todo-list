@@ -15,27 +15,26 @@ type Item = {
   title: string
 }
 
+type AddItemPayload = Omit<Item, 'id'>
+
 // logic
 const Container: NextPage = () => {
   const [items, setItems] = useState<Item[]>([])
-  const addItem = (item: Item) => {
+  const addItem = (payload: AddItemPayload) => {
+    // TODO 本当はランダム値じゃないほうがいい
+    const id = Math.random().toString()
+    const item = {
+      id,
+      title: payload.title,
+    }
     setItems((items) => [...items, item])
   }
 
   // debug
   useEffect(() => {
-    addItem({
-      id: '1',
-      title: 'タスクその 1',
-    })
-    addItem({
-      id: '2',
-      title: 'タスクその 2',
-    })
-    addItem({
-      id: '3',
-      title: 'タスクその 3',
-    })
+    addItem({ title: 'タスクその 1' })
+    addItem({ title: 'タスクその 2' })
+    addItem({ title: 'タスクその 3' })
   }, [])
 
   return <Presenter items={items} addItem={addItem} />
@@ -44,7 +43,7 @@ const Container: NextPage = () => {
 // presentation
 type PresenterProps = {
   items: Item[]
-  addItem: (item: Item) => void
+  addItem: (payload: AddItemPayload) => void
 }
 
 const Presenter = ({ items, addItem }: PresenterProps) => {
@@ -82,7 +81,7 @@ const Presenter = ({ items, addItem }: PresenterProps) => {
 
 // components
 type AddItemFormProps = {
-  addItem: (item: Item) => void
+  addItem: (payload: AddItemPayload) => void
 }
 
 const AddItemForm = ({ addItem }: AddItemFormProps) => {
@@ -93,10 +92,7 @@ const AddItemForm = ({ addItem }: AddItemFormProps) => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
-    addItem({
-      id: Math.random().toString(),
-      title,
-    })
+    addItem({ title })
   }
 
   return (
