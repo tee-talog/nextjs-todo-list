@@ -2,9 +2,8 @@ import clsx from 'clsx'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import {
-  ChangeEvent,
+  ChangeEventHandler,
   FormEventHandler,
-  MouseEventHandler,
   useEffect,
   useState,
 } from 'react'
@@ -98,7 +97,7 @@ type AddItemFormProps = {
 
 const AddItemForm = ({ addItem }: AddItemFormProps) => {
   const [title, setTitle] = useState('')
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setTitle(event.target.value)
   }
 
