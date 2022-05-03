@@ -104,6 +104,7 @@ const AddItemForm = ({ addItem }: AddItemFormProps) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
     addItem({ title })
+    setTitle('')
   }
 
   return (
