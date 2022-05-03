@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import PageTitle from '../components/PageTitle'
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +11,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1>TODO List</h1>
+        <PageTitle>TODO List</PageTitle>
         <section>
           <h2>add item</h2>
           <form>
