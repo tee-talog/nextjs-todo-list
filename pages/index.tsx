@@ -13,14 +13,9 @@ import List from '../components/List'
 import ListItem from '../components/ListItem'
 import PageTitle from '../components/PageTitle'
 import SectionTitle from '../components/SectionTitle'
+import { Item, ItemId } from '../types/item'
 
 // types
-type ItemId = string
-type Item = {
-  id: ItemId
-  title: string
-}
-
 type AddItemPayload = Omit<Item, 'id'>
 
 // logic
