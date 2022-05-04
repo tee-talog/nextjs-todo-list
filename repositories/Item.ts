@@ -1,4 +1,4 @@
-import * as itemLocalStorage from './implementation/item.localStorage'
+import * as itemLocalStorage from './implementation/Item.localStorage'
 import { IAddItem, IFetchItems, IRemoveItem } from './types'
 
 // 実装の選択
