@@ -1,15 +1,16 @@
-import { atom, useRecoilState } from 'recoil'
+import { atom, useRecoilStateLoadable } from 'recoil'
+import { fetchItems } from '../repositories/Item'
 import { Item, ItemId } from '../types/item'
 
 export type AddItemPayload = Omit<Item, 'id'>
 
 const itemsState = atom<Item[]>({
   key: 'itemState',
-  default: [],
+  default: new Promise((ok) => fetchItems().then(ok)),
 })
 
 const useItems = () => {
-  const [items, setItems] = useRecoilState(itemsState)
+  const [itemsLoadable, setItems] = useRecoilStateLoadable(itemsState)
 
   const addItem = (payload: AddItemPayload) => {
     // TODO 本当はランダム値じゃないほうがいい
@@ -25,11 +26,13 @@ const useItems = () => {
     setItems((items) => items.filter((item) => item.id !== id))
   }
 
-  return {
-    items,
-    addItem,
-    removeItem,
-  }
+  return [
+    itemsLoadable,
+    {
+      addItem,
+      removeItem,
+    },
+  ] as const
 }
 
 export default useItems

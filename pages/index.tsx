@@ -1,12 +1,7 @@
 import clsx from 'clsx'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  useEffect,
-  useState,
-} from 'react'
+import { ChangeEventHandler, FormEventHandler, useState } from 'react'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import List from '../components/List'
@@ -16,18 +11,39 @@ import SectionTitle from '../components/SectionTitle'
 import useItems, { AddItemPayload } from '../store/Item'
 import { Item, ItemId } from '../types/item'
 
+const Page: NextPage = () => (
+  <div className="flex min-h-screen flex-col items-center justify-center">
+    <Head>
+      <title>TODO List</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <Container />
+  </div>
+)
+
 // logic
-const Container: NextPage = () => {
-  const { items, addItem, removeItem } = useItems()
+const Container = () => {
+  const [{ state, contents }, { addItem, removeItem }] = useItems()
 
-  // debug
-  useEffect(() => {
-    addItem({ title: 'タスクその 1' })
-    addItem({ title: 'タスクその 2' })
-    addItem({ title: 'タスクその 3' })
-  }, [])
-
-  return <Presenter items={items} addItem={addItem} removeItem={removeItem} />
+  switch (state) {
+    case 'hasValue': {
+      return (
+        <Presenter items={contents} addItem={addItem} removeItem={removeItem} />
+      )
+    }
+    case 'loading': {
+      // TODO ロード画面を表示 or ロード中表示の Presenter を表示
+      return <div>loading</div>
+    }
+    case 'hasError': {
+      // TODO エラー画面表示
+      return <div>error</div>
+    }
+    default: {
+      const _: never = state
+      return null
+    }
+  }
 }
 
 // presentation
@@ -39,12 +55,7 @@ type PresenterProps = {
 
 const Presenter = ({ items, addItem, removeItem }: PresenterProps) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
-      <Head>
-        <title>TODO List</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <>
       <header className="flex h-16 w-full items-center bg-green-200 drop-shadow">
         <PageTitle className="px-2">TODO List</PageTitle>
       </header>
@@ -66,7 +77,7 @@ const Presenter = ({ items, addItem, removeItem }: PresenterProps) => {
           <ItemList items={items} removeItem={removeItem} />
         </section>
       </main>
-    </div>
+    </>
   )
 }
 
@@ -131,4 +142,4 @@ const ItemList = ({ items, removeItem }: ItemListProps) => {
   )
 }
 
-export default Container
+export default Page
