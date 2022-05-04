@@ -92,9 +92,9 @@ const AddItemForm = ({ addItem }: AddItemFormProps) => {
     setTitle(event.target.value)
   }
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
-    addItem({ title })
+    await addItem({ title })
     setTitle('')
   }
 
@@ -122,8 +122,8 @@ type ItemListProps = {
 }
 
 const ItemList = ({ items, removeItem }: ItemListProps) => {
-  const handleClick = (id: ItemId) => {
-    removeItem(id)
+  const handleClick = async (id: ItemId) => {
+    await removeItem(id)
   }
 
   return (
