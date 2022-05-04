@@ -13,27 +13,12 @@ import List from '../components/List'
 import ListItem from '../components/ListItem'
 import PageTitle from '../components/PageTitle'
 import SectionTitle from '../components/SectionTitle'
+import useItems, { AddItemPayload } from '../store/Item'
 import { Item, ItemId } from '../types/item'
-
-// types
-type AddItemPayload = Omit<Item, 'id'>
 
 // logic
 const Container: NextPage = () => {
-  const [items, setItems] = useState<Item[]>([])
-  const addItem = (payload: AddItemPayload) => {
-    // TODO 本当はランダム値じゃないほうがいい
-    const id = Math.random().toString()
-    const item = {
-      id,
-      title: payload.title,
-    }
-    setItems((items) => [...items, item])
-  }
-
-  const removeItem = (id: ItemId) => {
-    setItems((items) => items.filter((item) => item.id !== id))
-  }
+  const { items, addItem, removeItem } = useItems()
 
   // debug
   useEffect(() => {
