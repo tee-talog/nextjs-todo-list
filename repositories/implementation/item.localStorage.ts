@@ -8,7 +8,7 @@ const key = {
   ITEMS: 'store.items',
 }
 
-export const fetchItems: IFetchItems = () => {
+export const fetchItems: IFetchItems = async () => {
   const itemsString = localStorage.getItem(key.ITEMS) ?? '[]'
   const items = JSON.parse(itemsString)
   if (items && items.every(isItem)) {
